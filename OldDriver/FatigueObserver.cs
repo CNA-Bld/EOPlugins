@@ -37,20 +37,16 @@ namespace OldDriver
             o["api_req_map/next"].ResponseReceived += Advanced;
         }
 
-        private bool ShouldRefresh(string mapPoint)
+        private string ShouldRefresh(ICollection<string> mapPoints)
         {
-            if (string.IsNullOrEmpty(mapPoint))
-            {
-                return false;
-            }
             foreach(string possibleMapPoint in plugin.Settings.MapPoints)
             {
-                if (possibleMapPoint.Equals(mapPoint))
+                if (mapPoints.Contains(possibleMapPoint))
                 {
-                    return true;
+                    return possibleMapPoint;
                 }
             }
-            return false;
+            return null;
         }
 
         private void Advanced(string apiname, dynamic data)
@@ -60,16 +56,17 @@ namespace OldDriver
                 return;
             }
             CompassData compass = KCDatabase.Instance.Battle.Compass;
-            string target = string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, compass.Destination);
+            HashSet<string> mapPointAlias = new HashSet<string>();
+            mapPointAlias.Add(string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, compass.Destination));
             string wikiPointName = MapCell2WikiPoint.GetWikiPointName(compass.MapAreaID, compass.MapInfoID, compass.Destination);
-            string targetWikiName = null;
             if (!string.IsNullOrEmpty(wikiPointName))
             {
-                targetWikiName = string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, wikiPointName);
+                mapPointAlias.Add(string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, wikiPointName));
             }
-            if (ShouldRefresh(target) || ShouldRefresh(targetWikiName))
+            string possibleMapPoint = ShouldRefresh(mapPointAlias);
+            if (possibleMapPoint != null)
             {
-                Logger.Add(2, "沟了 / 疲劳驾驶了，帮你刷新。(" + (string.IsNullOrEmpty(targetWikiName) ? target : targetWikiName) + ")");
+                Logger.Add(2, "沟了 / 疲劳驾驶了，帮你刷新。(" + possibleMapPoint + ")");
                 formBrowserHost.RefreshBrowser();
             }
         }
