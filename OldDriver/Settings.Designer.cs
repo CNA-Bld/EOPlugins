@@ -103,7 +103,7 @@
             this.labelList.Name = "labelList";
             this.labelList.Size = new System.Drawing.Size(772, 25);
             this.labelList.TabIndex = 12;
-            this.labelList.Text = "自动刷新的地图点（格式形如 5-1-2）";
+            this.labelList.Text = "自动刷新的地图点（格式形如 5-1-2 或 5-1-A）";
             // 
             // listBox
             // 

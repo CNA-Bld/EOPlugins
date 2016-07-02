@@ -14,7 +14,7 @@ namespace OldDriver
     public class Plugin : ServerPlugin
     {
         private const string PLUGIN_SETTINGS = @"Settings\OldDriver.json";
-        private const string DEFAULT_SETTINGS = @"{""MapPoints"":[""5-1-2"",""5-1-10"",""3-2-5""], ""Enabled"":true}";
+        private const string DEFAULT_SETTINGS = @"{""MapPoints"":[""3-2-B"",""5-1-A"",""5-1-F""], ""Enabled"":true}";
         public dynamic Settings;
         
         public void SaveSettings()

@@ -7,6 +7,7 @@ using ElectronicObserver.Window;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Data;
 
 namespace OldDriver
 {
@@ -38,6 +39,10 @@ namespace OldDriver
 
         private bool ShouldRefresh(string mapPoint)
         {
+            if (string.IsNullOrEmpty(mapPoint))
+            {
+                return false;
+            }
             foreach(string possibleMapPoint in plugin.Settings.MapPoints)
             {
                 if (possibleMapPoint.Equals(mapPoint))
@@ -56,9 +61,15 @@ namespace OldDriver
             }
             CompassData compass = KCDatabase.Instance.Battle.Compass;
             string target = string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, compass.Destination);
-            if (ShouldRefresh(target))
+            string wikiPointName = MapCell2WikiPoint.GetWikiPointName(compass.MapAreaID, compass.MapInfoID, compass.Destination);
+            string targetWikiName = null;
+            if (!string.IsNullOrEmpty(wikiPointName))
             {
-                Logger.Add(2, "沟了 / 疲劳驾驶了，帮你刷新。(" + target + ")");
+                targetWikiName = string.Format("{0}-{1}-{2}", compass.MapAreaID, compass.MapInfoID, wikiPointName);
+            }
+            if (ShouldRefresh(target) || ShouldRefresh(targetWikiName))
+            {
+                Logger.Add(2, "沟了 / 疲劳驾驶了，帮你刷新。(" + (string.IsNullOrEmpty(targetWikiName) ? target : targetWikiName) + ")");
                 formBrowserHost.RefreshBrowser();
             }
         }
