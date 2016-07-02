@@ -24,9 +24,9 @@ namespace OldDriver
 
         private BindingList<string> mapPoints;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void add_Click(object sender, EventArgs e)
         {
-            if (!mapPoints.Contains(mapPointInput.Text))
+            if (!string.IsNullOrWhiteSpace(mapPointInput.Text) && !mapPoints.Contains(mapPointInput.Text))
             {
                 mapPoints.Add(mapPointInput.Text);
                 mapPointInput.Text = string.Empty;
@@ -34,7 +34,7 @@ namespace OldDriver
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void remove_Click(object sender, EventArgs e)
         {
             mapPoints.Remove((string)listBox.SelectedItem);
         }
