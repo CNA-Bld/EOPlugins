@@ -51,7 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ElectronicObserver\ElectronicObserver.csproj">
+    <ProjectReference Include="..\..\ElectronicObserver\ElectronicObserver\ElectronicObserver.csproj">
       <Project>{a9abec50-1bfc-4c69-87ae-c68db6004f68}</Project>
       <Name>ElectronicObserver</Name>
     </ProjectReference>
@@ -63,7 +63,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*" "$(ProjectDir)..\..\output\Plugins\"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)\output\Plugins\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
