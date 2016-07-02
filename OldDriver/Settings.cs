@@ -36,7 +36,7 @@ namespace OldDriver
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mapPoints.Remove((string)listBox1.SelectedItem);
+            mapPoints.Remove((string)listBox.SelectedItem);
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace OldDriver
             {
                 mapPoints.Add(mapPoint);
             }
-            listBox1.DataSource = mapPoints;
+            listBox.DataSource = mapPoints;
 
             mainSwitch.Checked = plugin.Settings.Enabled;
         }
