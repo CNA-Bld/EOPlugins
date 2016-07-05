@@ -31,7 +31,6 @@ namespace OldDriver
                 mapPoints.Add(mapPointInput.Text);
                 mapPointInput.Text = string.Empty;
             }
-
         }
 
         private void remove_Click(object sender, EventArgs e)
