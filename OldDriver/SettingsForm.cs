@@ -11,12 +11,12 @@ using ElectronicObserver.Window.Plugins;
 
 namespace OldDriver
 {
-    public partial class Settings : PluginSettingControl
+    public partial class SettingsForm : PluginSettingControl
     {
 
         private Plugin plugin;
 
-        public Settings(Plugin plugin)
+        public SettingsForm(Plugin plugin)
         {
             InitializeComponent();
             this.plugin = plugin;

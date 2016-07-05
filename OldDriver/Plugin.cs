@@ -60,7 +60,7 @@ namespace OldDriver
 
         public override PluginSettingControl GetSettings()
         {
-            return new Settings( this );
+            return new SettingsForm( this );
         }
     }
 }

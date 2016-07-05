@@ -1,6 +1,6 @@
 ﻿namespace OldDriver
 {
-    partial class Settings
+    partial class SettingsForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -156,13 +156,13 @@
             this.listBox.Size = new System.Drawing.Size(372, 115);
             this.listBox.TabIndex = 10;
             // 
-            // Settings
+            // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "Settings";
+            this.Name = "SettingsForm";
             this.Size = new System.Drawing.Size(400, 300);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tabControl.ResumeLayout(false);
