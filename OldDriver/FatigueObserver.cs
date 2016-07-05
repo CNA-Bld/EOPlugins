@@ -39,7 +39,7 @@ namespace OldDriver
 
         private string ShouldRefresh(ICollection<string> mapPoints)
         {
-            foreach(string possibleMapPoint in plugin.Settings.MapPoints)
+            foreach(string possibleMapPoint in plugin.settings.MapPoints)
             {
                 if (mapPoints.Contains(possibleMapPoint))
                 {
@@ -51,7 +51,7 @@ namespace OldDriver
 
         private void Advanced(string apiname, dynamic data)
         {
-            if (!plugin.Settings.Enabled)
+            if (!plugin.settings.Enabled)
             {
                 return;
             }

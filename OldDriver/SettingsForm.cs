@@ -41,19 +41,19 @@ namespace OldDriver
         private void Settings_Load(object sender, EventArgs e)
         {
             mapPoints = new BindingList<string>();
-            foreach (string mapPoint in plugin.Settings.MapPoints)
+            foreach (string mapPoint in plugin.settings.MapPoints)
             {
                 mapPoints.Add(mapPoint);
             }
             listBox.DataSource = mapPoints;
 
-            mainSwitch.Checked = plugin.Settings.Enabled;
+            mainSwitch.Checked = plugin.settings.Enabled;
         }
 
         public override bool Save()
         {
-            plugin.Settings.MapPoints = mapPoints.OrderBy(i => i).ToArray();
-            plugin.Settings.Enabled = mainSwitch.Checked;
+            plugin.settings.MapPoints = mapPoints.OrderBy(i => i).ToList();
+            plugin.settings.Enabled = mainSwitch.Checked;
             plugin.SaveSettings();
             return true;
         }

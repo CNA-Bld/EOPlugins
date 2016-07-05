@@ -14,22 +14,20 @@ namespace OldDriver
     public class Plugin : ServerPlugin
     {
         private const string PLUGIN_SETTINGS = @"Settings\OldDriver.json";
-        private const string DEFAULT_SETTINGS = @"{""MapPoints"":[""3-2-B"",""5-1-A"",""5-1-F""], ""Enabled"":true}";
-        public dynamic Settings;
+        public Settings settings;
         
         public void SaveSettings()
         {
-            if (Settings == null)
+            if (settings == null)
             {
-                Settings = DynamicJson.Parse(DEFAULT_SETTINGS);
+                settings = new Settings();
             }
             if (!Directory.Exists("Settings"))
             {
                 Directory.CreateDirectory("Settings");
             }
-            File.WriteAllText(PLUGIN_SETTINGS, Settings.ToString());
+            File.WriteAllText(PLUGIN_SETTINGS, DynamicJson.Serialize(settings));
         }
-
 
         public override string MenuTitle
         {
@@ -41,17 +39,10 @@ namespace OldDriver
 
         public override bool RunService(FormMain main)
         {
-            try
-            {
-                if (File.Exists(PLUGIN_SETTINGS))
-                    Settings = DynamicJson.Parse(File.ReadAllText(PLUGIN_SETTINGS));
-                else
-                    Settings = DynamicJson.Parse(DEFAULT_SETTINGS);
-            }
-            catch (Exception ex)
-            {
-                Settings = DynamicJson.Parse(DEFAULT_SETTINGS);
-            }
+            if (File.Exists(PLUGIN_SETTINGS))
+                settings = DynamicJson.Parse(File.ReadAllText(PLUGIN_SETTINGS)).Deserialize<Settings>();
+            else
+                settings = new Settings();
 
             Task.Factory.StartNew(() => FatigueObserver.Instance.Initialize(main, this));
 
