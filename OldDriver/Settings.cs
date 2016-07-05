@@ -11,5 +11,6 @@ namespace OldDriver
         public bool Enabled { get; set; } = true;
         public bool MapPointEnabled { get; set; } = true;
         public List<string> MapPoints { get; set; } = new[] { "3-2-B", "5-1-A", "5-1-F" }.ToList();
+        public bool TaihaEnabled { get; set; } = false;
     }
 }

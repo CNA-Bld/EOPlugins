@@ -47,12 +47,16 @@ namespace OldDriver
             }
             listBox.DataSource = mapPoints;
 
+            mapPointSwitch.Checked = plugin.settings.MapPointEnabled;
+            taihaSwitch.Checked = plugin.settings.TaihaEnabled;
             mainSwitch.Checked = plugin.settings.Enabled;
         }
 
         public override bool Save()
         {
             plugin.settings.MapPoints = mapPoints.OrderBy(i => i).ToList();
+            plugin.settings.MapPointEnabled = mapPointSwitch.Checked;
+            plugin.settings.TaihaEnabled = taihaSwitch.Checked;
             plugin.settings.Enabled = mainSwitch.Checked;
             plugin.SaveSettings();
             return true;
