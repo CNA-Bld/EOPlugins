@@ -39,6 +39,7 @@ namespace KoebutaRobot
 
             APIObserver o = APIObserver.Instance;
             o["api_req_sortie/battleresult"].ResponseReceived += BattleResultGet;
+            o["api_req_combined_battle/battleresult"].ResponseReceived += BattleResultGet;
         }
 
         private bool ShouldReport(string mapPoint)
